@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca</title>
+    {% load static %}
+    
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <h1>Livros da Biblioteca</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Editora</th>
+                <th>Ano de Publicação</th>
+                <th>ISBN</th>
+                <th>Disponível</th>
+                <th>Detalhes</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for livro in livros %}
+            <tr>
+                <td>{{ livro.titulo }}</td>
+                <td>{{ livro.autor }}</td>
+                <td>{{ livro.editora }}</td>
+                <td>{{ livro.ano_publicacao }}</td>
+                <td>{{ livro.isbn }}</td>
+                <td>{{ livro.disponivel|yesno:"Sim,Não" }}</td>
+                <td>
+                    <a href="{% url 'livro_detalhe' livro.id %}">Ver Detalhes</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>
